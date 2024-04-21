@@ -181,7 +181,6 @@ services:
       - postgres
       - cassandra
     deploy:
-      deploy:
       resources:
         limits:
           cpus: '0.5'
@@ -209,7 +208,6 @@ services:
       - postgres
       - cassandra
     deploy:
-      deploy:
       resources:
         limits:
           cpus: '0.5'
