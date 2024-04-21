@@ -25,6 +25,14 @@ services:
       - batch2stream
     depends_on:
       - redpanda-0
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 2048M
+        reservations:
+          cpus: '0.25'
+          memory: 1024M
   postgres:
     image: postgres:16
     ports:
@@ -68,7 +76,7 @@ services:
       - --schema-registry-addr internal://0.0.0.0:8081,external://0.0.0.0:18081
       - --rpc-addr redpanda-0:33145
       - --advertise-rpc-addr redpanda-0:33145
-      - --memory=1536M
+      - --memory=2048M
       - --smp 1
       - --default-log-level=info
       - --overprovisioned
@@ -87,10 +95,10 @@ services:
       resources:
         limits:
           cpus: '2'
-          memory: 2048M
+          memory: 4096M
         reservations:
           cpus: '1'
-          memory: 3096M
+          memory: 3072M
   console:
     container_name: redpanda-console
     image: docker.redpanda.com/redpandadata/console:v2.4.6
@@ -148,9 +156,11 @@ services:
     deploy:
       resources:
         limits:
-          memory: 2g
+          cpus: '0.5'
+          memory: 3072M
         reservations:
-          memory: 2g
+          cpus: '0.25'
+          memory: 2048M
   # Flink job manager
   jobmanager:
     image: weimeilin/flink:latest
@@ -171,11 +181,14 @@ services:
       - postgres
       - cassandra
     deploy:
+      deploy:
       resources:
         limits:
-          memory: 1g
+          cpus: '0.5'
+          memory: 2048M
         reservations:
-          memory: 1g
+          cpus: '0.25'
+          memory: 1024M
   # Flink task manager
   taskmanager:
     image: weimeilin/flink:latest
@@ -196,11 +209,14 @@ services:
       - postgres
       - cassandra
     deploy:
+      deploy:
       resources:
         limits:
-          memory: 1g
+          cpus: '0.5'
+          memory: 2048M
         reservations:
-          memory: 1g
+          cpus: '0.25'
+          memory: 1024M
           
   # Flink SQL client
   sql-client:
