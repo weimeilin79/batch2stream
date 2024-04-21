@@ -116,9 +116,6 @@ services:
       - redpanda-0
   kafka-connect:
     image: weimeilin/dbz:latest
-    build:
-      context: .
-      dockerfile: Dockerfile
     depends_on:
       - redpanda-0
       - console
