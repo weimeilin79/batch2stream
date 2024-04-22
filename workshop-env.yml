@@ -28,10 +28,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
           memory: 2048M
         reservations:
-          cpus: '0.25'
           memory: 1024M
   postgres:
     image: postgres:16
@@ -80,6 +78,7 @@ services:
       - --smp 1
       - --default-log-level=info
       - --overprovisioned
+      - --data_transforms_enabled=true
     image: docker.redpanda.com/redpandadata/redpanda:v23.3.12
     container_name: redpanda-0
     volumes:
@@ -94,10 +93,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2'
           memory: 4096M
         reservations:
-          cpus: '1'
           memory: 3072M
   console:
     container_name: redpanda-console
@@ -156,10 +153,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
           memory: 3072M
         reservations:
-          cpus: '0.25'
           memory: 2048M
   # Flink job manager
   jobmanager:
@@ -183,10 +178,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
           memory: 2048M
         reservations:
-          cpus: '0.25'
           memory: 1024M
   # Flink task manager
   taskmanager:
@@ -210,10 +203,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
           memory: 2048M
         reservations:
-          cpus: '0.25'
           memory: 1024M
           
   # Flink SQL client

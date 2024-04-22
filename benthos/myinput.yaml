@@ -5,6 +5,7 @@ input:
     paths:
       - /data/sensorInput/*.csv
     parse_header_row: true
+    delete_on_finish: true
     delimiter: ','
     lazy_quotes: false
 output:
