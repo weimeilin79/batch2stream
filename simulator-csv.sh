@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define the source and destination directories
-SOURCE_DIR="/path/to/source/directory"  # Update this to your source directory for non-US CSV files
-DEST_DIR="/ccc/REPLACEME"
+SOURCE_DIR="/root/batch2stream/data/international"  # Update this to your source directory for non-US CSV files
+DEST_DIR="/root/batch2stream/benthos/sensorInput"
 
 # Change to the source directory
 cd "$SOURCE_DIR"
