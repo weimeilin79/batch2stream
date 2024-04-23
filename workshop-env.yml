@@ -23,8 +23,6 @@ services:
       - ./cassandra-data:/var/lib/cassandra
     networks: 
       - batch2stream
-    depends_on:
-      - redpanda-0
     deploy:
       resources:
         limits:
@@ -49,8 +47,6 @@ services:
       - POSTGRES_PASSWORD=1234qwer
       - POSTGRES_DB=demo
       - PGPASSWORD=1234qwer
-    depends_on:
-      - redpanda-0
   jupyterlab:
     container_name: jupyterlab
     image: jupyter/all-spark-notebook
@@ -78,7 +74,6 @@ services:
       - --smp 1
       - --default-log-level=info
       - --overprovisioned
-      - --data_transforms_enabled=true
     image: docker.redpanda.com/redpandadata/redpanda:v23.3.12
     container_name: redpanda-0
     volumes:
@@ -125,7 +120,6 @@ services:
       - redpanda-0
       - console
       - postgres
-      - cassandra
     ports:
       - "8083:8083"
     volumes:
