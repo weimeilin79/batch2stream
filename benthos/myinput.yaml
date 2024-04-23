@@ -1,16 +1,1 @@
-# Common config fields, showing default values
-input:
-  label: "test_csv"
-  csv:
-    paths:
-      - /data/sensorInput/*.csv
-    parse_header_row: true
-    delete_on_finish: true
-    delimiter: ','
-    lazy_quotes: false
-output:
-  label: "test_redpanda"
-  kafka_franz:
-    seed_brokers: ["redpanda-0:9092"] 
-    topic: "sensor_csv" 
-    max_in_flight: 1
+#Write the configuration fle in this file
