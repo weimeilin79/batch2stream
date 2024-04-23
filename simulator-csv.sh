@@ -11,6 +11,7 @@ cd "$SOURCE_DIR"
 for file in $(ls non_us_boston_air_traffic_*.csv | sort); do
     echo "Moving $file to $DEST_DIR"
     mv "$file" "$DEST_DIR"
+    chmod 777 "$DEST_DIR/$file"
     echo "File moved successfully. Waiting for 15 seconds..."
     sleep 15  # Wait for 15 seconds before moving the next file
 done
