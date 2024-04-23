@@ -11,6 +11,6 @@ input:
 output:
   label: "test_redpanda"
   kafka_franz:
-    seed_brokers: ["redpanda-0:9092"] 
+    seed_brokers: ["localhost:19092"] 
     topic: "sensor_csv" 
     max_in_flight: 1

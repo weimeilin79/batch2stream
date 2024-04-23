@@ -19,7 +19,6 @@ public class FlightDataRun {
         
     public static void main(String[] args) throws Exception {
         LOG.info("------>>>>>Started: ");
-        System.out.println("------>>>>>Started: ");
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
         // Assuming the data is in JSON format and coming from the topic "boston.public.bos_air_traffic"
@@ -34,10 +33,7 @@ public class FlightDataRun {
 
         DataStream<FlightEvent> stream = env.fromSource(source, WatermarkStrategy.noWatermarks(), "Kafka Source");
 
-        LOG.info("------>-->>>>stream: "+stream.toString());
-        System.out.println("------>-->>>>stream: "+stream.toString());
-
-        
+          
         stream.print();
 
         DataStream<Tuple5<String, Double, Double, Boolean, String>> readyToWriteStream = stream
