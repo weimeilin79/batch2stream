@@ -1,0 +1,5 @@
+icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
+c05004,ACA766  ,Canada,1714055888,1714055894,-71.0198,42.3626,,True,0.0,109.69,,,,0560,False,0
+424507,BMA302  ,United Kingdom,1714056071,1714056071,-71.0209,42.3724,,True,3.09,90.0,,,,,False,0
+406f74,BAW9609 ,United Kingdom,1714056075,1714056075,-71.012,42.3661,,True,5.92,213.75,,,,,False,0
+71ba04,KAL091  ,Republic of Korea,1714056076,1714056076,-71.0021,42.374,,True,8.23,348.75,,,,7437,False,0

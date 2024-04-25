@@ -1,0 +1,6 @@
+icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
+c060b8,PTR2945 ,Canada,1714074085,1714074085,-71.0145,42.3717,,True,8.23,315.0,,,,0543,False,0
+c02ff6,CFSEF   ,Canada,1714074080,1714074085,-71.0212,42.3736,,True,0.0,205.31,,,,,False,0
+c00fab,JZA607  ,Canada,1714074085,1714074085,-71.0235,42.3617,,True,0.0,185.62,,,,,False,0
+407da5,VIR157L ,United Kingdom,1714074085,1714074085,-71.0075,42.3761,,True,6.43,199.69,,,,,False,0
+0c2068,CMP705  ,Panama,1714074082,1714074082,-71.0204,42.3724,,True,5.92,98.44,,,,,False,0

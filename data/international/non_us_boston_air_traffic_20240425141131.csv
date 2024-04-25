@@ -1,2 +1,2 @@
 icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
-e80468,TAM8164 ,Chile,1714044072,1714044077,-71.018,42.3703,,True,0.0,222.19,,,,,False,0
+89610d,UAE62Y  ,United Arab Emirates,1714068685,1714068685,-71.0217,42.3721,,True,4.12,230.62,,,,,False,0
