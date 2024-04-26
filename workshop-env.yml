@@ -218,6 +218,13 @@ services:
         jobmanager.rpc.address: jobmanager
         rest.address: jobmanager
       
+  # Air Space Monitoring
+  monitor:
+    image: weimeilin/odsc-monitor:latest
+    container_name: monitor
+    networks:
+      - batch2stream
     
+         
 
   
