@@ -1,0 +1,228 @@
+version: '3'
+networks:
+  batch2stream:
+volumes:
+  redpanda-0: null
+services:
+  scylladb:
+    container_name: scylladb
+    image: scylladb/scylla:5.4.6
+    restart: always
+    command:
+      - --seeds=scylladb
+      - --smp 1
+      - --memory 500M
+      - --api-address 0.0.0.0
+      - --authenticator PasswordAuthenticator
+      - --authorizer CassandraAuthorizer
+    ports:
+      - "9042:9042"   
+    networks:
+      - batch2stream
+    deploy:
+      resources:
+        limits:
+          memory: 2048M
+        reservations:
+          memory: 1024M
+  postgres:
+    image: postgres:16
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: "pg_isready -U postgres -d demo"
+      interval: 2s
+      timeout: 20s
+      retries: 10
+    volumes:
+      - ./psql_init:/docker-entrypoint-initdb.d
+    networks:
+      - batch2stream
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234qwer
+      - POSTGRES_DB=demo
+      - PGPASSWORD=1234qwer
+  jupyterlab:
+    container_name: jupyterlab
+    image: jupyter/all-spark-notebook
+    networks:
+      - batch2stream
+    ports:
+      - "8888:8888"  # JupyterLab
+    volumes:
+      - ./jupyter:/home/jovyan/data  # Mount a local directory to the container for persistent storage
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    command: "start-notebook.sh --NotebookApp.token='' --NotebookApp.password=''"
+  redpanda-0:
+    command:
+      - redpanda
+      - start
+      - --kafka-addr internal://0.0.0.0:9092,external://0.0.0.0:19092
+      - --advertise-kafka-addr internal://redpanda-0:9092,external://localhost:19092
+      - --pandaproxy-addr internal://0.0.0.0:8082,external://0.0.0.0:18082
+      - --advertise-pandaproxy-addr internal://redpanda-0:8082,external://localhost:18082
+      - --schema-registry-addr internal://0.0.0.0:8081,external://0.0.0.0:18081
+      - --rpc-addr redpanda-0:33145
+      - --advertise-rpc-addr redpanda-0:33145
+      - --memory=2048M
+      - --smp 1
+      - --default-log-level=info
+      - --overprovisioned
+    image: docker.redpanda.com/redpandadata/redpanda:v23.3.12
+    container_name: redpanda-0
+    volumes:
+      - redpanda-0:/var/lib/redpanda/data
+    networks:
+      - batch2stream
+    ports:
+      - 18081:18081
+      - 18082:18082
+      - 19092:19092
+      - 19644:9644
+    deploy:
+      resources:
+        limits:
+          memory: 4096M
+        reservations:
+          memory: 3072M
+  console:
+    container_name: redpanda-console
+    image: docker.redpanda.com/redpandadata/console:v2.4.6
+    networks:
+      - batch2stream
+    entrypoint: /bin/sh
+    command: -c 'echo "$$CONSOLE_CONFIG_FILE" > /tmp/config.yml; /app/console'
+    environment:
+      CONFIG_FILEPATH: /tmp/config.yml
+      CONSOLE_CONFIG_FILE: |
+        kafka:
+          brokers: ["redpanda-0:9092"]
+          schemaRegistry:
+            enabled: true
+            urls: ["http://redpanda-0:8081"]
+        redpanda:
+          adminApi:
+            enabled: true
+            urls: ["http://redpanda-0:9644"]
+    ports:
+      - 8080:8080
+    depends_on:
+      - redpanda-0
+  kafka-connect:
+    image: weimeilin/dbz:latest
+    depends_on:
+      - redpanda-0
+      - console
+      - postgres
+    ports:
+      - "8083:8083"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - batch2stream
+    environment:
+      BOOTSTRAP_SERVERS: redpanda-0:9092
+      GROUP_ID: kafka-connect-group
+      CONFIG_STORAGE_TOPIC: connect-configs
+      OFFSET_STORAGE_TOPIC: connect-offsets
+      STATUS_STORAGE_TOPIC: connect-status
+      KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      INTERNAL_KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      INTERNAL_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      KEY_CONVERTER_SCHEMAS_ENABLE: "false"
+      VALUE_CONVERTER_SCHEMAS_ENABLE: "false"
+      INTERNAL_KEY_CONVERTER_SCHEMAS_ENABLE: "false"
+      INTERNAL_VALUE_CONVERTER_SCHEMAS_ENABLE: "false"
+      CONNECT_REST_PORT: 8083
+      HEAP_OPTS: '-Xms1g -Xmx1g'  # default '-Xms1g -Xmx1g'
+      KAFKA_LOG4J_LOGGERS: "org.apache.kafka.connect.runtime=INFO,io.debezium=DEBUG"
+      KAFKA_LOG4J_ROOT_LOGLEVEL: "INFO"
+    deploy:
+      resources:
+        limits:
+          memory: 3072M
+        reservations:
+          memory: 2048M
+  # Flink job manager
+  jobmanager:
+    image: weimeilin/flink:latest
+    container_name: jobmanager
+    ports:
+      - 8081:8081
+    command: jobmanager
+    networks:
+      - batch2stream
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+        jobmanager.heap.size=1024m
+    depends_on:
+      - redpanda-0
+      - console
+      - postgres
+      - scylladb
+    deploy:
+      resources:
+        limits:
+          memory: 2048M
+        reservations:
+          memory: 1024M
+  # Flink task manager
+  taskmanager:
+    image: weimeilin/flink:latest
+    container_name: taskmanager
+    command: taskmanager
+    networks:
+      - batch2stream
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+        taskmanager.numberOfTaskSlots: 20
+        taskmanager.heap.size=1024m
+    depends_on:
+      - jobmanager
+      - redpanda-0
+      - console
+      - postgres
+      - scylladb
+    deploy:
+      resources:
+        limits:
+          memory: 2048M
+        reservations:
+          memory: 1024M
+          
+  # Flink SQL client
+  sql-client:
+    image: weimeilin/flink:latest
+    container_name: sql-client
+    networks:
+      - batch2stream
+    command:
+      - /opt/flink/bin/sql-client.sh
+      - embedded
+      - -l
+      - /opt/sql-client/lib
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+        rest.address: jobmanager
+      
+  # Air Space Monitoring
+  monitor:
+    image: weimeilin/odsc-monitor:latest
+    container_name: monitor
+    ports:
+      - 3000:3000
+    networks:
+      - batch2stream
+    
+         
+
+  
