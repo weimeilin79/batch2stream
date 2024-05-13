@@ -12,8 +12,6 @@ services:
       - --smp 1
       - --memory 500M
       - --api-address 0.0.0.0
-      - --authenticator PasswordAuthenticator
-      - --authorizer CassandraAuthorizer
     ports:
       - "9042:9042"   # CQL Port (non SSL)
     networks:
