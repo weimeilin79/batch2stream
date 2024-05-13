@@ -52,7 +52,7 @@ public class FlightDataRun {
 
         CassandraSink.addSink(readyToWriteStream)
         .setQuery("INSERT INTO demo.latest_flight_data (callsign, longitude, latitude, on_ground, squawk) VALUES (?, ?, ?, ?, ?);")
-        .setHost("cassandra")
+        .setHost("scylladb")
         .build();
 
 
