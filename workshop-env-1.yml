@@ -8,16 +8,40 @@ services:
     container_name: scylladb
     image: scylladb/scylla:5.4.6
     restart: always
-    command:
-      - --seeds=scylladb
+    command: 
       - --smp 1
       - --memory 500M
       - --api-address 0.0.0.0
       - --authenticator PasswordAuthenticator
       - --authorizer CassandraAuthorizer
     ports:
-      - "9042:9042"   
+      - "9042:9042"   # CQL Port (non SSL)
     networks:
+      - batch2stream
+    deploy:
+      resources:
+        limits:
+          memory: 2048M
+        reservations:
+          memory: 1024M
+  cassandra:
+    image: cassandra:latest
+    container_name: cassandra-container
+    healthcheck:
+        test: ["CMD", "cqlsh", "-e", "describe keyspaces" ]
+        interval: 5s
+        timeout: 5s
+        retries: 60
+    ports:
+      - "9042:9042"
+    environment:
+      - CASSANDRA_USER=admin
+      - CASSANDRA_PASSWORD=admin
+      - HEAP_NEWSIZE=512M
+      - MAX_HEAP_SIZE=128M
+    volumes:
+      - ./cassandra-data:/var/lib/cassandra
+    networks: 
       - batch2stream
     deploy:
       resources:
