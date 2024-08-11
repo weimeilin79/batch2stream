@@ -60,7 +60,7 @@ services:
       - --mode dev-container
       - --default-log-level=debug
       - --seeds redpanda-0:33145
-    image: docker.redpanda.com/redpandadata/redpanda:v23.3.1
+    image: docker.redpanda.com/redpandadata/redpanda:v24.2.2
     container_name: redpanda-1
     volumes:
       - redpanda-1:/var/lib/redpanda/data
@@ -89,7 +89,7 @@ services:
       - --mode dev-container
       - --default-log-level=debug
       - --seeds redpanda-0:33145
-    image: docker.redpanda.com/redpandadata/redpanda:v23.3.1
+    image: docker.redpanda.com/redpandadata/redpanda:v24.2.2
     container_name: redpanda-2
     volumes:
       - redpanda-2:/var/lib/redpanda/data
@@ -104,7 +104,7 @@ services:
       - redpanda-0
   console:
     container_name: redpanda-console
-    image: docker.redpanda.com/redpandadata/console:v2.3.8
+    image: docker.redpanda.com/redpandadata/console:v2.7.0
     networks:
       - redpanda_network
     entrypoint: /bin/sh
