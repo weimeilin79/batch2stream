@@ -1,3 +1,0 @@
-icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
-c07971,ACA769  ,Canada,1723478818,1723478818,-71.0196,42.3632,,True,0.0,137.81,,,,,False,0
-c05cc3,CGJDI   ,Canada,1723478819,1723478819,-71.0028,42.3601,,True,13.89,109.69,,,,,False,0

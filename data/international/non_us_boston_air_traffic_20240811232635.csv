@@ -1,3 +1,0 @@
-icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
-407da5,VIR12E  ,United Kingdom,1723433186,1723433186,-71.0033,42.3634,7.62,False,68.39,315.0,0.0,,-22.86,,False,0
-4cc50f,ICE18L  ,Iceland,1723433180,1723433180,-71.0181,42.3716,,True,0.0,118.12,,,,,False,0

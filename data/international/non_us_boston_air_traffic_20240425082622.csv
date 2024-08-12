@@ -1,3 +1,0 @@
-icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
-c060b7,PTR2938 ,Canada,1714047974,1714047974,-71.0178,42.3727,,True,5.92,132.19,,,,,False,0
-346603,GES061C ,Spain,1714047963,1714047963,-71.0207,42.3742,,True,0.06,312.19,,,,,False,0

@@ -1,2 +1,0 @@
-icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
-c04e20,CGDPF   ,Canada,1714046174,1714046174,-71.007,42.372,,True,6.43,331.88,,,,2763,False,0

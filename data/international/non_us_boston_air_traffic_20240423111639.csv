@@ -1,3 +1,0 @@
-icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
-c03dac,JZA695  ,Canada,1713885386,1713885388,-71.0201,42.3627,,True,0.77,115.31,,,,,False,0
-c060b9,PTR2941 ,Canada,1713885388,1713885388,-71.0178,42.3713,,True,5.66,272.81,,,,2033,False,0

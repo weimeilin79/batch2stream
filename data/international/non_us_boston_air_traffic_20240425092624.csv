@@ -1,3 +1,0 @@
-icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
-346603,GES061C ,Spain,1714051282,1714051282,-71.0207,42.3742,,True,0.06,312.19,,,,,False,0
-424507,BMA301  ,United Kingdom,1714051533,1714051533,-71.0186,42.3735,,True,0.77,213.75,,,,,False,0

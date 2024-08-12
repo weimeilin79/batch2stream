@@ -1,2 +1,0 @@
-icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
-0d0bff,AMX641  ,Mexico,1714054276,1714054276,-71.0115,42.3671,,True,5.4,196.88,,,,,False,0

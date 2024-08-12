@@ -1,3 +1,0 @@
-icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
-c05cc3,CGJDI   ,Canada,1723467271,1723467273,-71.022,42.3747,,True,0.0,306.56,,,,,False,0
-0c206b,CMP312  ,Panama,1723467404,1723467405,-71.0081,42.3615,,True,9.26,115.31,,,,,False,0

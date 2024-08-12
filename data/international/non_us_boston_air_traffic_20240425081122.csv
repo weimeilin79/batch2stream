@@ -1,2 +1,0 @@
-icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
-c060b7,PTR2938 ,Canada,1714047059,1714047059,-71.0252,42.3714,,True,0.0,199.69,,,,,False,0

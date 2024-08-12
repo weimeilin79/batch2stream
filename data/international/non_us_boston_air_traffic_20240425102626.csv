@@ -1,4 +1,0 @@
-icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
-c05004,ACA766  ,Canada,1714055185,1714055185,-71.0064,42.3621,-137.16,False,58.77,20.5,-0.65,,-15.24,0560,False,0
-e80468,TAM8165 ,Chile,1714055182,1714055182,-71.0132,42.3526,,True,0.0,140.62,,,,,False,0
-c00b8a,JZA605  ,Canada,1714055185,1714055185,-71.013,42.3567,,True,0.0,196.88,,,,,False,0

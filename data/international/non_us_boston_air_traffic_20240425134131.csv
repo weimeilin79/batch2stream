@@ -1,3 +1,0 @@
-icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
-86e496,JAL7    ,Japan,1714066884,1714066884,-70.9973,42.381,68.58,False,91.12,19.46,15.28,,137.16,,False,0
-3c7a44,CFG2038 ,Germany,1714066764,1714066764,-71.0173,42.3699,,True,0.06,286.88,,,,1324,False,0

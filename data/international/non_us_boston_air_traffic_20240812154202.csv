@@ -1,4 +1,0 @@
-icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
-0d0b4b,,Mexico,1723491651,1723491651,-71.0236,42.3705,,True,0.06,208.12,,,,,False,0
-424507,BMA302  ,United Kingdom,1723491661,1723491661,-70.9999,42.3595,,True,0.0,84.38,,,,,False,0
-c00b80,JZA605  ,Canada,1723491661,1723491662,-71.0002,42.3595,,True,0.0,92.81,,,,,False,0

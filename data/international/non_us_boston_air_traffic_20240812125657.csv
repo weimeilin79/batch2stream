@@ -1,5 +1,0 @@
-icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
-49526b,RZO283  ,Portugal,1723481740,1723481744,-71.0195,42.3709,,True,0.0,210.94,,,,,False,0
-e8046e,TAM8165 ,Chile,1723481744,1723481744,-71.0015,42.3598,,True,0.0,123.75,,,,,False,0
-c07971,ACA769  ,Canada,1723481744,1723481745,-71.0196,42.3632,,True,0.0,137.81,,,,,False,0
-71ba04,KAL091  ,Republic of Korea,1723481530,1723481530,-71.0161,42.3714,,True,5.66,315.0,,,,,False,0

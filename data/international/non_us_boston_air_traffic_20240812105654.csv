@@ -1,4 +1,0 @@
-icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
-e8046e,TAM8165 ,Chile,1723474462,1723474473,-71.0196,42.372,,True,1.03,286.88,,,,,False,0
-c07971,,Canada,1723474474,1723474475,-71.0196,42.3632,,True,0.0,137.81,,,,,False,0
-c05cc3,CGJDI   ,Canada,1723474468,1723474474,-71.0221,42.3747,,True,0.0,306.56,,,,,False,0
