@@ -3,7 +3,7 @@ input:
   label: "test_csv"
   csv:
     paths:
-      - ./sensorInput/*.csv
+      - /root/batch2stream/benthos/sensorInput/*.csv
     parse_header_row: true
     delete_on_finish: true
     delimiter: ','
