@@ -1,0 +1,3 @@
+icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
+49526b,RZO283  ,Portugal,1723480813,1723480813,-71.0087,42.3657,,True,8.75,199.69,,,,,False,0
+c05cc3,CGJDI   ,Canada,1723480778,1723480778,-70.9957,42.3558,,True,0.0,137.81,,,,,False,0

@@ -1,0 +1,2 @@
+icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
+c07971,ACA769  ,Canada,1723470728,1723470766,-71.0196,42.3632,,True,0.0,137.81,,,,6352,False,0

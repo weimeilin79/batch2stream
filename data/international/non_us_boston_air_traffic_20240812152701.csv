@@ -1,0 +1,4 @@
+icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
+424507,BMA302  ,United Kingdom,1723490772,1723490772,-71.0114,42.3677,,True,4.12,168.75,,,,,False,0
+c00b80,JZA605  ,Canada,1723490772,1723490772,-71.0065,42.361,,True,6.69,109.69,,,,,False,0
+c07971,ACA769  ,Canada,1723490772,1723490772,-71.0167,42.3583,,True,7.46,101.25,,,,,False,0

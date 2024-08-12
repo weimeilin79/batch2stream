@@ -1,0 +1,3 @@
+icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
+89644e,UAE238  ,United Arab Emirates,1723432292,1723432292,-71.0155,42.371,,True,7.2,135.0,,,,,False,0
+407da5,VIR12E  ,United Kingdom,1723432285,1723432290,-71.0245,42.3723,,True,0.0,137.81,,,,,False,0

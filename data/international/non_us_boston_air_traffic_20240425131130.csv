@@ -1,0 +1,2 @@
+icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
+71ba04,KAL092  ,Republic of Korea,1714065085,1714065085,-71.015,42.3598,,True,7.46,199.69,,,,,False,0

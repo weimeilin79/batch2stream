@@ -1,0 +1,2 @@
+icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
+c02ff6,CFSEF   ,Canada,1714073184,1714073184,-71.0212,42.3736,,True,0.0,205.31,,,,,False,0

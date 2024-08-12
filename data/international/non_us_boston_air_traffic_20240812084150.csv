@@ -1,0 +1,2 @@
+icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
+8964bf,ETD3TQ  ,United Arab Emirates,1723466502,1723466502,-71.0001,42.3611,0.0,False,63.3,315.66,0.0,,-22.86,3313,False,0

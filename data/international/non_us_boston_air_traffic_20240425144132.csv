@@ -1,0 +1,4 @@
+icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
+c00fab,JZA606  ,Canada,1714070315,1714070315,-71.0199,42.363,,True,0.0,118.12,,,,,False,0
+39d2a5,AFR334  ,France,1714070485,1714070485,-71.004,42.3671,,True,42.18,19.69,,,,2401,False,0
+06a0ea,QTR32X  ,Qatar,1714070485,1714070485,-71.007,42.3773,,True,5.92,199.69,,,,6036,False,0

@@ -1,0 +1,3 @@
+icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,true_track,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
+c05004,ACA767  ,Canada,1714059685,1714059686,-70.9871,42.3604,7.62,False,76.36,75.96,14.31,,91.44,,False,0
+4cc574,ICE635  ,Iceland,1714059431,1714059431,-71.0173,42.3702,,True,0.0,247.5,,,,0452,False,0
