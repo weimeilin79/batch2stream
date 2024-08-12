@@ -1,15 +1,21 @@
 package com.redpanda.demo;
 
-import org.apache.flink.connector.kafka.source.KafkaSource;
-import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;
+import org.apache.flink.api.common.functions.ReduceFunction;
+import org.apache.flink.api.java.tuple.Tuple5;
 
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
+import org.apache.flink.streaming.api.windowing.time.Time;
+import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
+
 import org.apache.flink.streaming.connectors.cassandra.CassandraSink;
 
-import org.apache.flink.api.common.eventtime.WatermarkStrategy;
-import org.apache.flink.api.common.functions.MapFunction;
-import org.apache.flink.api.java.tuple.Tuple5;
+import org.apache.flink.connector.kafka.source.KafkaSource;
+import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
+
+import org.apache.flink.util.Collector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,18 +43,27 @@ public class FlightDataRun {
         stream.print();
 
         DataStream<Tuple5<String, Double, Double, Boolean, String>> readyToWriteStream = stream
-        .map(new MapFunction<FlightEvent, Tuple5<String, Double, Double, Boolean, String>>() {
-            @Override
-            public Tuple5<String, Double, Double, Boolean, String> map(FlightEvent flightEvent) {
-                return new Tuple5<>(
-                    flightEvent.getCallsign(),
-                    flightEvent.getLongitude(),
-                    flightEvent.getLatitude(),
-                    flightEvent.isOn_ground(),
-                    flightEvent.getSquawk()
-                );
-            }
-        });
+            .keyBy(FlightEvent::getCallsign)
+            .timeWindow(Time.seconds(10)) // Apply a 10 sec tumbling window
+            .reduce(new ReduceFunction<FlightEvent>() {
+                @Override
+                public FlightEvent reduce(FlightEvent flightOne, FlightEvent flightTwo) {
+                    // Keep the latest event for the callsign within the window
+                    return flightTwo.getTime_position() > flightOne.getTime_position() ? flightTwo : flightOne;
+                }
+            }, new ProcessWindowFunction<FlightEvent, Tuple5<String, Double, Double, Boolean, String>, String, TimeWindow>() {
+                @Override
+                public void process(String key, Context context, Iterable<FlightEvent> elements, Collector<Tuple5<String, Double, Double, Boolean, String>> out) {
+                    FlightEvent flightEvent = elements.iterator().next(); // Get the deduplicated event
+                    out.collect(new Tuple5<>(
+                        flightEvent.getCallsign(),
+                        flightEvent.getLongitude(),
+                        flightEvent.getLatitude(),
+                        flightEvent.isOn_ground(),
+                        flightEvent.getSquawk()
+                    ));
+                }
+            });
 
         CassandraSink.addSink(readyToWriteStream)
         .setQuery("INSERT INTO demo.latest_flight_data (callsign, longitude, latitude, on_ground, squawk) VALUES (?, ?, ?, ?, ?);")

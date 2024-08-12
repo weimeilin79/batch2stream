@@ -92,7 +92,7 @@ services:
       - --smp 1
       - --default-log-level=info
       - --overprovisioned
-    image: docker.redpanda.com/redpandadata/redpanda:v24.1.1
+    image: docker.redpanda.com/redpandadata/redpanda:v24.2.2
     container_name: redpanda-0
     volumes:
       - redpanda-0:/var/lib/redpanda/data
@@ -111,7 +111,7 @@ services:
           memory: 3072M
   console:
     container_name: redpanda-console
-    image: docker.redpanda.com/redpandadata/console:v2.4.6
+    image: docker.redpanda.com/redpandadata/console:v2.7.0
     networks:
       - batch2stream
     entrypoint: /bin/sh
